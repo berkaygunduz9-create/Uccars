@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aracını Bize Sat | UC CARS</title>
+<style>
+  :root{--renk:#e1251b;--koyu:#2e3033;--gri:#f4f5f7}
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--gri);color:#1c1d1f}
+  header{background:var(--koyu);padding:16px;text-align:center;border-bottom:4px solid var(--renk)}
+  .logo{font-size:2rem;font-weight:900;letter-spacing:2px;font-style:italic}
+  .logo .uc{color:#fff}.logo .cars{color:var(--renk)}
+  .hero{background:#1c1d1f;color:#fff;text-align:center;padding:28px 16px}
+  .hero h1{margin:0 0 8px;font-size:1.6rem}
+  .hero p{margin:0;opacity:.85}
+  main{max-width:640px;margin:-20px auto 40px;padding:0 16px}
+  form{background:#fff;border-radius:12px;padding:20px;box-shadow:0 4px 18px rgba(0,0,0,.08)}
+  fieldset{border:0;padding:0;margin:0 0 20px}
+  legend{font-weight:700;color:var(--renk);margin-bottom:10px;font-size:1.05rem}
+  label{display:block;font-size:.9rem;margin:10px 0 4px}
+  input,select,textarea{width:100%;padding:11px;border:1px solid #ccd;border-radius:8px;font-size:1rem;background:#fff}
+  .iki{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .onay{display:flex;gap:8px;align-items:flex-start;font-size:.85rem;margin-top:10px}
+  .onay input{width:auto;margin-top:3px}
+  button{width:100%;background:var(--renk);color:#fff;border:0;padding:14px;font-size:1.05rem;font-weight:700;border-radius:8px;cursor:pointer;margin-top:10px}
+  button:disabled{opacity:.6}
+  #onizleme{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+  #onizleme img{width:72px;height:72px;object-fit:cover;border-radius:6px}
+  .not{font-size:.8rem;color:#667;margin-top:4px}
+  #sonuc{display:none;text-align:center;padding:30px 10px;background:#fff;border-radius:12px}
+  footer{text-align:center;font-size:.8rem;color:#667;padding:0 16px 30px}
+</style>
+</head>
+<body>
+<header><div class="logo"><span class="uc">UC</span> <span class="cars">CARS</span></div></header>
+<section class="hero"><h1>Aracını Bize Sat</h1><p>Formu doldur, seni biz arayalım ve araç için teklifimizi sunalım.</p></section>
+
+<main>
+<form id="form">
+  <input type="text" name="web_sitesi" style="display:none" tabindex="-1" autocomplete="off">
+
+  <fieldset>
+    <legend>1. Araç Bilgileri</legend>
+    <div class="iki">
+      <div><label>Marka *</label><select id="marka" name="marka" required></select></div>
+      <div><label>Model *</label><select id="model" name="model" required disabled></select></div>
+    </div>
+    <div id="digerKutu" style="display:none">
+      <label>Marka / model (elle yaz) *</label><input id="diger" name="diger" placeholder="Örn: Togg T10X">
+    </div>
+    <div class="iki">
+      <div><label>Yıl *</label><select id="yil" name="yil" required></select></div>
+      <div><label>Kilometre *</label><input name="kilometre" type="number" min="0" max="999999" required></div>
+    </div>
+    <div class="iki">
+      <div><label>Yakıt *</label><select name="yakit" required><option value="">Seçin</option><option>Benzin</option><option>Dizel</option><option>LPG'li</option><option>Hibrit</option><option>Elektrik</option></select></div>
+      <div><label>Vites *</label><select name="vites" required><option value="">Seçin</option><option>Manuel</option><option>Otomatik</option><option>Yarı Otomatik</option></select></div>
+    </div>
+    <div class="iki">
+      <div><label>Kasa Tipi</label><select name="kasa"><option value="">Seçin</option><option>Sedan</option><option>Hatchback</option><option>SUV</option><option>Station Wagon</option><option>Coupe</option><option>Cabrio</option><option>Pick-up</option><option>Van</option></select></div>
+      <div><label>Renk</label><input name="renk"></div>
+    </div>
+    <label>Motor / Paket (varsa)</label>
+    <input name="motor_paket" placeholder="Örn: 1.6 TDI Highline">
+  </fieldset>
+
+  <fieldset>
+    <legend>2. Araç Durumu</legend>
+    <label>Boya / Değişen durumu *</label>
+    <select name="boya_durumu" required><option value="">Seçin</option><option>Hatasız, boyasız</option><option>Boyalı parça var</option><option>Değişen parça var</option><option>Boyalı ve değişen var</option><option>Bilmiyorum</option></select>
+    <label>Hasar kaydı (Tramer)</label>
+    <select name="hasar_kaydi"><option>Yok</option><option>Var</option><option>Bilmiyorum</option></select>
+    <label>Ağır hasar kaydı var mı?</label>
+    <select name="agir_hasar"><option>Hayır</option><option>Evet</option><option>Bilmiyorum</option></select>
+    <label>Ek bilgi (bakım, ekstralar, kusurlar)</label>
+    <textarea name="ek_bilgi" rows="4" maxlength="1500"></textarea>
+  </fieldset>
+
+  <fieldset>
+    <legend>3. Fotoğraflar</legend>
+    <label>Araç fotoğrafları (en fazla 8)</label>
+    <input id="foto" type="file" accept="image/*" multiple>
+    <div class="not">Ön, arka, yan, iç ve kilometre saati fotoğrafları işimizi hızlandırır.</div>
+    <div id="onizleme"></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>4. İletişim Bilgileri</legend>
+    <label>Ad Soyad *</label><input name="ad_soyad" required autocomplete="name" maxlength="100">
+    <label>Telefon (GSM) *</label><input name="telefon" type="tel" required autocomplete="tel" placeholder="05xx xxx xx xx" maxlength="20">
+    <label>E-posta</label><input name="eposta" type="email" autocomplete="email" maxlength="120">
+    <label>Şehir</label><input name="sehir" maxlength="60">
+    <label class="onay"><input type="checkbox" id="kvkk" required>
+      <span>Kişisel verilerimin araç satın alma teklifi amacıyla işlenmesine ilişkin aydınlatma metnini okudum, onaylıyorum. *</span></label>
+  </fieldset>
+
+  <button id="btn" type="submit">Başvuruyu Gönder</button>
+</form>
+
+<div id="sonuc"><h2>Teşekkürler!</h2><p>Başvurun bize ulaştı. En kısa sürede seni arayacağız.</p></div>
+</main>
+
+<footer>© UC CARS</footer>
+
+<script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+  // === BURAYI KENDİ DEĞERLERİNLE DEĞİŞTİR ===
+  const SUPABASE_URL = "https://PROJE-KIMLIGI.supabase.co";
+  const SUPABASE_ANON_KEY = "BURAYA_ANON_PUBLIC_KEY";
+  // =============================================
+
+  const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const ARACLAR = {
+    "Audi":["A1","A3","A4","A5","A6","Q2","Q3","Q5","Q7","Q8"],
+    "BMW":["1 Serisi","2 Serisi","3 Serisi","4 Serisi","5 Serisi","X1","X3","X5"],
+    "Citroen":["C3","C4","C5 Aircross","C-Elysée"],
+    "Dacia":["Duster","Sandero","Lodgy","Jogger"],
+    "Fiat":["Egea","500","Doblo","Fiorino","Panda"],
+    "Ford":["Fiesta","Focus","Kuga","Puma","Courier","Connect"],
+    "Honda":["Civic","City","CR-V","HR-V","Jazz"],
+    "Hyundai":["i10","i20","i30","Elantra","Tucson","Bayon","Kona"],
+    "Kia":["Picanto","Rio","Ceed","Sportage","Sorento","Stonic"],
+    "Mercedes-Benz":["A Serisi","B Serisi","C Serisi","E Serisi","CLA","GLA","GLC","S Serisi"],
+    "Nissan":["Micra","Juke","Qashqai","X-Trail"],
+    "Opel":["Corsa","Astra","Insignia","Mokka","Crossland","Grandland"],
+    "Peugeot":["208","301","308","2008","3008","5008"],
+    "Renault":["Clio","Megane","Symbol","Captur","Taliant","Austral"],
+    "Seat":["Ibiza","Leon","Arona","Ateca"],
+    "Skoda":["Fabia","Scala","Octavia","Superb","Kamiq","Karoq","Kodiaq"],
+    "Tesla":["Model 3","Model Y"],
+    "Toyota":["Yaris","Corolla","C-HR","RAV4","Hilux"],
+    "Volkswagen":["Polo","Golf","Jetta","Passat","T-Roc","Tiguan","Caddy"],
+    "Volvo":["S60","S90","XC40","XC60","XC90"],
+    "Diger":[]
+  };
+
+  const marka = document.getElementById("marka");
+  const model = document.getElementById("model");
+  const yil = document.getElementById("yil");
+  const digerKutu = document.getElementById("digerKutu");
+  const diger = document.getElementById("diger");
+
+  marka.innerHTML = '<option value="">Seçin</option>' +
+    Object.keys(ARACLAR).map(m => `<option value="${m}">${m === "Diger" ? "Diğer (listede yok)" : m}</option>`).join("");
+
+  const buYil = new Date().getFullYear();
+  yil.innerHTML = '<option value="">Seçin</option>';
+  for (let y = buYil + 1; y >= 1995; y--) yil.innerHTML += `<option>${y}</option>`;
+
+  marka.addEventListener("change", () => {
+    const secili = marka.value;
+    const elle = secili === "Diger";
+    digerKutu.style.display = elle ? "block" : "none";
+    diger.required = elle;
+    model.required = !elle;
+    model.disabled = !secili || elle;
+    model.innerHTML = '<option value="">Seçin</option>' +
+      (ARACLAR[secili] || []).map(m => `<option>${m}</option>`).join("");
+  });
+
+  // Fotoğraf önizleme + küçültme
+  const foto = document.getElementById("foto");
+  const onizleme = document.getElementById("onizleme");
+  let secilenler = [];
+
+  foto.addEventListener("change", () => {
+    secilenler = Array.from(foto.files).slice(0, 8);
+    onizleme.innerHTML = "";
+    secilenler.forEach(f => {
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(f);
+      onizleme.appendChild(img);
+    });
+  });
+
+  function kucult(dosya, maxKenar = 1600, kalite = 0.8) {
+    return new Promise((coz, red) => {
+      const img = new Image();
+      img.onload = () => {
+        const oran = Math.min(1, maxKenar / Math.max(img.width, img.height));
+        const c = document.createElement("canvas");
+        c.width = Math.round(img.width * oran);
+        c.height = Math.round(img.height * oran);
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+        c.toBlob(b => b ? coz(b) : red(new Error("küçültme başarısız")), "image/jpeg", kalite);
+      };
+      img.onerror = () => red(new Error("fotoğraf açılamadı"));
+      img.src = URL.createObjectURL(dosya);
+    });
+  }
+
+  const form = document.getElementById("form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (form.web_sitesi.value) return; // bot tuzağı
+    const btn = document.getElementById("btn");
+    btn.disabled = true; btn.textContent = "Gönderiliyor...";
+
+    try {
+      const oturum = crypto.randomUUID();
+      const yollar = [];
+      for (let i = 0; i < secilenler.length; i++) {
+        btn.textContent = `Fotoğraflar yükleniyor (${i + 1}/${secilenler.length})...`;
+        const blob = await kucult(secilenler[i]);
+        const yol = `${oturum}/${i + 1}.jpg`;
+        const { error } = await sb.storage.from("fotograflar").upload(yol, blob, { contentType: "image/jpeg" });
+        if (error) throw error;
+        yollar.push(`${SUPABASE_URL}/storage/v1/object/public/fotograflar/${yol}`);
+      }
+
+      btn.textContent = "Başvuru kaydediliyor...";
+      const v = Object.fromEntries(new FormData(form));
+      const markaAd = v.marka === "Diger" ? (v.diger || "Belirtilmedi") : v.marka;
+      const modelAd = v.marka === "Diger" ? "-" : v.model;
+
+      const kayit = {
+        marka: markaAd, model: modelAd, yil: parseInt(v.yil), kilometre: parseInt(v.kilometre),
+        yakit: v.yakit, vites: v.vites, kasa: v.kasa || null, renk: v.renk || null,
+        motor_paket: v.motor_paket || null, boya_durumu: v.boya_durumu,
+        hasar_kaydi: v.hasar_kaydi, agir_hasar: v.agir_hasar, ek_bilgi: v.ek_bilgi || null,
+        ad_soyad: v.ad_soyad, telefon: v.telefon, eposta: v.eposta || null, sehir: v.sehir || null,
+        kvkk_onay: document.getElementById("kvkk").checked, fotograflar: yollar
+      };
+
+      const { error } = await sb.from("basvurular").insert(kayit);
+      if (error) throw error;
+
+      // Mail bildirimi (başarısız olsa bile başvuru kayıtlıdır)
+      fetch("/api/basvuru", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(kayit)
+      }).catch(() => {});
+
+      form.style.display = "none";
+      document.getElementById("sonuc").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      console.error(err);
+      alert("Gönderilemedi. Lütfen tekrar deneyin ya da bizi arayın.");
+      btn.disabled = false; btn.textContent = "Başvuruyu Gönder";
+    }
+  });
+</script>
+</body>
+</html>
