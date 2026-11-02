@@ -240,7 +240,7 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (err) {
       console.error(err);
-      alert("Gönderilemedi. Lütfen tekrar deneyin ya da bizi arayın.");
+      alert("alert("Hata: " + (err.message || JSON.stringify(err)));");
       btn.disabled = false; btn.textContent = "Başvuruyu Gönder";
     }
   });
