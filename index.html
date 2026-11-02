@@ -31,14 +31,59 @@
 
   .ust{--fildisi:#ece7df;--soluk:#bcb7ae;--cizgi:#3c3c40;position:relative;overflow:hidden;color:var(--fildisi);
     background:#0c0c0d}
-  .ust::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0c0c0d 0%,#0c0c0d 22%,rgba(12,12,13,0) 58%),linear-gradient(0deg,rgba(12,12,13,.35),rgba(12,12,13,0) 40%),url(hero.jpg) right bottom/auto 100% no-repeat}
-  @media(max-width:760px){.ust::before{background:linear-gradient(90deg,rgba(12,12,13,.85),rgba(12,12,13,.45)),url(hero.jpg) 20% center/cover no-repeat}}
+  .ust::before{content:"";position:absolute;top:0;bottom:0;right:0;width:64%;background:url(hero.jpg) center/cover no-repeat;-webkit-mask-image:linear-gradient(90deg,transparent,#000 48%);mask-image:linear-gradient(90deg,transparent,#000 48%)}
+  @media(max-width:760px){.ust::before{left:0;width:auto;-webkit-mask-image:none;mask-image:none;background:linear-gradient(180deg,rgba(12,12,13,.35) 0,rgba(12,12,13,.55) 200px,#0c0c0d 360px),url(hero.jpg) center 56px/auto 330px no-repeat}}
   .ust > *{position:relative}
   .ust .araba{position:absolute;right:max(24px,calc(50% - 550px));bottom:60px;width:min(470px,44vw);opacity:.9;pointer-events:none}
   @media(max-width:900px){.ust .araba{display:none}}
   .ust .logo .isim{border-color:#4a4a4e}
   footer{background:#0c0c0d;--fildisi:#ece7df;--soluk:#a39e95;--cizgi:#2d2d30;color:var(--soluk)}
   footer .logo{color:var(--fildisi)}
+
+  .ozellik{display:grid;grid-template-columns:repeat(3,1fr);gap:0 36px;margin-top:46px;border-top:1px solid rgba(236,231,223,.28)}
+  .ozellik div{padding-top:20px}
+  .ozellik strong{display:block;font-family:"Cormorant Garamond",serif;font-weight:600;font-size:1.45rem;line-height:1.2;margin-bottom:4px;text-shadow:0 2px 14px rgba(0,0,0,.8)}
+  .ozellik span{color:#d6d1c8;font-size:.97rem;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+  @media(max-width:760px){.ozellik{grid-template-columns:1fr}}
+  .bolum{margin-top:84px}
+  .bolum h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(2rem,5vw,2.8rem);line-height:1.1;margin:0 0 30px}
+  .adimlar{display:grid;grid-template-columns:repeat(3,1fr);gap:0 34px;counter-reset:a}
+  .adimlar div{border-top:2px solid var(--fildisi);padding-top:18px}
+  .adimlar div::before{counter-increment:a;content:counter(a);display:block;font-family:"Cormorant Garamond",serif;font-size:3.4rem;line-height:1;color:var(--kirmizi);margin-bottom:8px}
+  .adimlar strong{display:block;font-weight:500;font-size:1.1rem}
+  .adimlar span{color:var(--soluk);font-size:.97rem}
+  @media(max-width:700px){.adimlar{grid-template-columns:1fr;gap:26px}}
+  details{border-bottom:1px solid var(--cizgi);padding:20px 0}
+  details:first-of-type{border-top:1px solid var(--cizgi)}
+  summary{cursor:pointer;font-family:"Cormorant Garamond",serif;font-size:1.45rem;font-weight:500;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";color:var(--kirmizi);font-size:1.6rem;line-height:1}
+  details[open] summary::after{content:"\2212"}
+  details p{margin:12px 0 0;color:var(--soluk);max-width:36em}
+
+  header .ic{gap:16px}
+  .tel{color:var(--fildisi);text-decoration:none;font-weight:400;letter-spacing:.06em;border-bottom:1px solid var(--kirmizi);padding-bottom:2px;white-space:nowrap}
+  .tel:hover{color:#fff}
+  .ulas{display:grid;grid-template-columns:1fr 1.2fr;gap:34px;align-items:stretch}
+  @media(max-width:760px){.ulas{grid-template-columns:1fr}}
+  .ulas address{font-style:normal;font-size:1.1rem;line-height:1.7}
+  .ulas address b{display:block;font-family:"Cormorant Garamond",serif;font-weight:600;font-size:1.5rem;margin-bottom:6px}
+  .dugmeler{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .dugme{display:inline-block;padding:9px 16px;font-size:.92rem;text-decoration:none;font-weight:500;letter-spacing:.06em;border:1px solid var(--fildisi);color:var(--fildisi);transition:background .2s,color .2s}
+  .dugme:hover{background:var(--fildisi);color:#fff}
+  .dugme.k{background:var(--kirmizi);border-color:var(--kirmizi);color:#fff}
+  .dugme.k:hover{background:var(--kirmizi-acik);border-color:var(--kirmizi-acik)}
+  .dugme.w{background:#1fa855;border-color:#1fa855;color:#fff}
+  .dugme.w:hover{background:#188a46}
+  .harita{width:100%;min-height:300px;border:1px solid var(--cizgi);filter:grayscale(.3)}
+  .sabit{display:none}
+  @media(max-width:760px){
+    .sabit{display:flex;gap:8px;position:fixed;right:12px;bottom:12px;z-index:20}
+    .sabit a{padding:9px 15px;font-size:.85rem;text-align:center;text-decoration:none;color:#fff;font-weight:500;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+    .sabit a:first-child{background:var(--kirmizi)}
+    .sabit a:last-child{background:#1fa855}
+    header .tel{display:none}
+  }
   header{padding:26px 28px}
   header .ic{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
   .marka{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:1.7rem;letter-spacing:.32em;color:var(--fildisi)}
@@ -102,6 +147,15 @@
   footer{border-top:1px solid var(--cizgi);text-align:center;padding:44px 20px 50px;color:var(--soluk);font-size:.9rem}
   footer .marka{display:block;margin-bottom:10px;font-size:1.4rem}
   @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+  .ozellik.koyu{border-top:2px solid var(--fildisi);margin-top:0}
+  .ozellik.koyu strong{text-shadow:none}
+  .ozellik.koyu span{color:var(--soluk);text-shadow:none}
+  .hero{padding:26px 28px 120px}
+  .hero .cizgi{margin-bottom:20px}
+  .hero h1{font-size:clamp(2.3rem,5.5vw,3.9rem);margin-bottom:14px}
+  .hero p{font-size:1.08rem}
+  main{margin-top:-84px}
 </style>
 </head>
 <body>
@@ -111,13 +165,12 @@
 <path d="M68 12.5A13 13 0 1 0 68 31.5" stroke="#ece7df" stroke-width="4"/>
 <path d="M2 40.5h72" stroke="#e1251b" stroke-width="2.5"/>
 <path d="M31 40.5l7-9h14" stroke="#e1251b" stroke-width="0"/>
-</svg><span class="isim"><b>CARS</b><span>İstanbul</span></span></div></div></header>
+</svg><span class="isim"><b>CARS</b><span>İstanbul</span></span></div><a class="tel" href="tel:+905077773857">0507 777 38 57</a></div></header>
 
 <section class="hero"><div class="ic">
   <div class="cizgi"></div>
   <h1>Aracınız için özel bir teklif.</h1>
-  <p>Aracınızın bilgilerini ve fotoğraflarını iletin. Sizi arayıp teklifimizi kişisel olarak sunalım.</p>
-  <ul><li>Başvuru ücretsiz</li><li>Sizi biz arıyoruz</li><li>Form üç dakikada dolar</li></ul>
+  <p>Tüm araçlarınız değerinde satın alınır, hızlı fiyat verilir. Bilgilerinizi iletin, sizi hemen arayalım.</p>
 </div></section>
 </div>
 
@@ -189,6 +242,47 @@
 </form>
 
 <div id="sonuc"><h2>Teşekkür ederiz.</h2><p>Başvurunuz bize ulaştı. En kısa sürede sizi arayıp teklifimizi ileteceğiz.</p></div>
+
+<section class="bolum">
+  <h2>Neden UC CARS?</h2>
+  <div class="ozellik koyu">
+    <div><strong>Ücretsiz başvuru</strong><span>Başvuru için ücret ödemezsiniz.</span></div>
+    <div><strong>Size biz ulaşırız</strong><span>Başvurunuzu alınca sizi telefonla arıyoruz.</span></div>
+    <div><strong>Fotoğrafla hızlanır</strong><span>Ön, arka ve iç fotoğraflar teklifi hızlandırır.</span></div>
+  </div>
+</section>
+
+<section class="bolum">
+  <h2>Nasıl işliyor?</h2>
+  <div class="adimlar">
+    <div><strong>Formu doldurun</strong><span>Aracınızın bilgilerini ve fotoğraflarını gönderin.</span></div>
+    <div><strong>Sizi arayalım</strong><span>Başvurunuzu inceleyip telefonla ulaşırız.</span></div>
+    <div><strong>Teklifi değerlendirin</strong><span>Size özel teklifimizi ileteceğiz, kararı siz verirsiniz.</span></div>
+  </div>
+</section>
+
+<section class="bolum">
+  <h2>Sık sorulanlar</h2>
+  <details><summary>Başvuru ücretli mi?</summary><p>Hayır. Başvuru için ücret ödemezsiniz.</p></details>
+  <details><summary>Teklifi nasıl alacağım?</summary><p>Başvurunuzu aldıktan sonra verdiğiniz telefon numarasından sizi arayıp teklifimizi ileteceğiz.</p></details>
+  <details><summary>Fotoğraf yüklemek zorunlu mu?</summary><p>Zorunlu değil. Ancak ön, arka, yan, iç ve kilometre saati fotoğrafları teklifi hızlandırır.</p></details>
+  <details><summary>Bilgilerim nasıl kullanılacak?</summary><p>Bilgileriniz yalnızca aracınız için teklif vermek amacıyla kullanılır.</p></details>
+</section>
+
+<section class="bolum">
+  <h2>Bize ulaşın</h2>
+  <div class="ulas">
+    <div>
+      <address><b>UC CARS</b>Belen Sokak No:2/B<br>Bayrampaşa / İstanbul<br><a class="tel" href="tel:+905077773857">0507 777 38 57</a></address>
+      <div class="dugmeler">
+        <a class="dugme k" href="tel:+905077773857">Hemen arayın</a>
+        <a class="dugme w" href="https://wa.me/905077773857?text=Merhaba%2C%20arac%C4%B1m%C4%B1%20satmak%20istiyorum." target="_blank" rel="noopener">WhatsApp</a>
+        <a class="dugme" href="https://www.google.com/maps/search/?api=1&query=UC+CARS+Belen+Sokak+2B+Bayrampa%C5%9Fa+%C4%B0stanbul" target="_blank" rel="noopener">Yol tarifi</a>
+      </div>
+    </div>
+    <iframe class="harita" title="UC CARS konumu" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=UC+CARS+Belen+Sokak+2B+Bayrampa%C5%9Fa+%C4%B0stanbul&output=embed"></iframe>
+  </div>
+</section>
 </main>
 
 <footer><div class="logo kucuk"><svg class="mark" viewBox="0 0 76 44" role="img" aria-label="UC CARS" fill="none" stroke-linecap="butt">
@@ -196,7 +290,7 @@
 <path d="M68 12.5A13 13 0 1 0 68 31.5" stroke="#ece7df" stroke-width="4"/>
 <path d="M2 40.5h72" stroke="#e1251b" stroke-width="2.5"/>
 <path d="M31 40.5l7-9h14" stroke="#e1251b" stroke-width="0"/>
-</svg><span class="isim"><b>CARS</b><span>İstanbul</span></span></div>İstanbul · info@uc-cars.net</footer>
+</svg><span class="isim"><b>CARS</b><span>İstanbul</span></span></div>Belen Sokak No:2/B, Bayrampaşa / İstanbul<br>0507 777 38 57 · info@uc-cars.net</footer>
 
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
@@ -374,5 +468,6 @@
     }
   });
 </script>
+<nav class="sabit" aria-label="Hızlı iletişim"><a href="tel:+905077773857">Ara</a><a href="https://wa.me/905077773857?text=Merhaba%2C%20arac%C4%B1m%C4%B1%20satmak%20istiyorum." target="_blank" rel="noopener">WhatsApp</a></nav>
 </body>
 </html>
