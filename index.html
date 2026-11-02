@@ -156,6 +156,44 @@
   .hero h1{font-size:clamp(2.3rem,5.5vw,3.9rem);margin-bottom:14px}
   .hero p{font-size:1.08rem}
   main{margin-top:-84px}
+
+  .not{font-size:.9rem;color:var(--soluk);margin:10px 0 0}
+  .lejant{display:flex;gap:18px;margin:12px 0 4px;font-size:.92rem}
+  .lejant span{display:flex;align-items:center;gap:7px}
+  .lejant i{width:16px;height:16px;border-radius:3px;border:1px solid #9a9ea5;display:inline-block}
+  .lejant .o{background:#eceef0}.parca rect{fill:#e3e6ea}
+  .lejant .l{background:#f6e08a;border-color:#c9b04a}.lejant .b{background:#f0903a;border-color:#b86a1c}.lejant .d{background:#e1251b;border-color:#b81c14}
+  .sablonkutu{display:flex;flex-direction:column;align-items:center;gap:4px;margin:10px 0;background:#f6f6f7;border:1px solid var(--cizgi);padding:14px 10px}
+  .yon{font-size:.8rem;color:var(--soluk);letter-spacing:.1em}
+  .sablon{width:min(300px,86%);height:auto;touch-action:manipulation}
+  .sablon .teker{fill:#2b2c2e}.sablon .notouch,.sablon .kontur,.sablon .cam,.sablon .ayna,.sablon .far,.sablon .stop,.sablon .cizgi{pointer-events:none}.sablon .kontur{fill:none;stroke:#6e737b;stroke-width:1.6}.sablon .cam{fill:#9fb0c1;stroke:#6f7f8f;stroke-width:1.2}.sablon .ayna{fill:#9a9ea6;stroke:#6e727a;stroke-width:1}.sablon .far{fill:#fff4c2;stroke:#b9a95a;stroke-width:1}.sablon .stop{fill:#d2433a;stroke:#9c2a23;stroke-width:1}.sablon .cizgi{fill:none;stroke:#8d9199;stroke-width:1.2;opacity:.7}
+  .parca{cursor:pointer;outline:none}
+  .parca rect{stroke:#fff;stroke-width:2.2;transition:fill .15s}
+  .parca text{font-size:9px;text-anchor:middle;dominant-baseline:middle;fill:#3a3d42;pointer-events:none;font-family:Jost,sans-serif;font-weight:500}
+  .parca:hover rect{stroke:var(--kirmizi)}
+  .parca:focus-visible rect{stroke:var(--kirmizi);stroke-width:3}
+  .parca.l rect{fill:#f6e08a}.parca.b rect{fill:#f0903a}
+  .parca.d rect{fill:#e1251b}.parca.d text{fill:#fff}
+
+  .sablonkutu{background:radial-gradient(ellipse at 50% 45%,#2a2b2f 0,#141416 62%,#0b0b0c 100%);border:1px solid #2d2d30;padding:18px 10px}
+  .sablonkutu .yon{color:#8d8a84}
+  .sablon .golge-yok{display:none}
+  .parca rect{fill:#2c2e33;stroke:#0d0d0e;stroke-width:2.4}
+  .parca text{fill:#d9d5cc;font-weight:400;letter-spacing:.02em}
+  .parca:hover rect{stroke:#d8b878}
+  .parca:focus-visible rect{stroke:#d8b878}
+  .parca.l rect{fill:#e6cf86}.parca.l text{fill:#1d1a10}
+  .parca.b rect{fill:#e0822c}.parca.b text{fill:#1d1208}
+  .parca.d rect{fill:#e1251b}.parca.d text{fill:#fff}
+  .lejant .o{background:#2c2e33;border-color:#0d0d0e}
+  .sablon .teker{fill:#0f0f10;stroke:#3a3b3f;stroke-width:1.2}
+  .sablon .kontur{stroke:#9a9ca3;stroke-width:1.2}
+  .sablon .cam{fill:url(#camg);stroke:#6b7686}
+  .sablon .yansima{fill:#fff;opacity:.09;pointer-events:none}
+  .sablon .ayna{fill:#23252a;stroke:#8d9199}
+  .sablon .far{fill:#f6f2e2;stroke:#c9bf8f}
+  .sablon .stop{fill:#e1251b;stroke:#7d1812}
+  .sablon .cizgi{stroke:#b9b4a8;opacity:.35}
 </style>
 </head>
 <body>
@@ -206,7 +244,55 @@
   <fieldset>
     <legend><b>2</b>Araç durumu</legend>
     <label for="boya">Boya / değişen durumu *</label>
-    <select id="boya" name="boya_durumu" required><option value="">Seçin</option><option>Hatasız, boyasız</option><option>Boyalı parça var</option><option>Değişen parça var</option><option>Boyalı ve değişen var</option><option>Bilmiyorum</option></select>
+    <select id="boya" name="boya_secim" required><option value="">Seçin</option><option value="yok">Hatasız, boyasız</option><option value="var">Boyalı veya değişen parça var</option><option value="bilmiyorum">Bilmiyorum</option></select>
+    <div id="boyaKutu" style="display:none">
+      <p class="not">Şablondaki parçaya dokunarak durumunu değiştirin: sırasıyla <b>lokal boyalı</b>, <b>boyalı</b>, <b>değişen</b> ve tekrar orijinal olur.</p>
+      <div class="lejant"><span><i class="o"></i>Orijinal</span><span><i class="l"></i>Lokal boyalı</span><span><i class="b"></i>Boyalı</span><span><i class="d"></i>Değişen</span></div>
+      <div class="sablonkutu"><span class="yon">Ön</span><svg class="sablon" viewBox="0 0 220 440" aria-label="Araç parça şablonu">
+    <defs>
+      <clipPath id="govde"><path d="M110 8 C150 8 172 14 178 38 C186 68 190 98 190 130 L191 300 C191 342 188 370 182 394 C175 418 148 430 110 430 C72 430 45 418 38 394 C32 370 29 342 29 300 L30 130 C30 98 34 68 42 38 C48 14 70 8 110 8 Z"/></clipPath>
+      <linearGradient id="camg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4a586a"/><stop offset=".55" stop-color="#151a22"/><stop offset="1" stop-color="#2a3442"/></linearGradient>
+      <linearGradient id="boyag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".14"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient>
+      <linearGradient id="golge" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".45"/><stop offset=".08" stop-color="#fff" stop-opacity=".2"/><stop offset=".3" stop-color="#fff" stop-opacity=".02"/><stop offset=".5" stop-color="#fff" stop-opacity=".1"/><stop offset=".7" stop-color="#fff" stop-opacity=".02"/><stop offset=".92" stop-color="#fff" stop-opacity=".2"/><stop offset="1" stop-color="#000" stop-opacity=".45"/></linearGradient>
+    </defs>
+    <rect class="teker" x="21" y="60" width="16" height="42" rx="5"/><rect class="teker" x="183" y="60" width="16" height="42" rx="5"/>
+    <rect class="teker" x="21" y="312" width="16" height="42" rx="5"/><rect class="teker" x="183" y="312" width="16" height="42" rx="5"/>
+    <g clip-path="url(#govde)">
+    <g class="parca" data-id="on_tampon" data-ad="Ön tampon" role="button" tabindex="0" aria-label="Ön tampon: orijinal"><rect x="0" y="0" width="220" height="44"/><text x="110" y="26">Ön tampon</text></g>
+    <g class="parca" data-id="kaput" data-ad="Kaput" role="button" tabindex="0" aria-label="Kaput: orijinal"><rect x="66" y="44" width="88" height="96"/><text x="110" y="96">Kaput</text></g>
+    <g class="parca" data-id="tavan" data-ad="Tavan" role="button" tabindex="0" aria-label="Tavan: orijinal"><rect x="72" y="176" width="76" height="86"/><text x="110" y="219">Tavan</text></g>
+    <g class="parca" data-id="bagaj" data-ad="Bagaj" role="button" tabindex="0" aria-label="Bagaj: orijinal"><rect x="66" y="300" width="88" height="94"/><text x="110" y="350">Bagaj</text></g>
+    <g class="parca" data-id="arka_tampon" data-ad="Arka tampon" role="button" tabindex="0" aria-label="Arka tampon: orijinal"><rect x="0" y="394" width="220" height="46"/><text x="110" y="412">Arka tampon</text></g>
+    <g class="parca" data-id="sol_on_camurluk" data-ad="Sol ön çamurluk" role="button" tabindex="0" aria-label="Sol ön çamurluk: orijinal"><rect x="0" y="44" width="66" height="96"/><text x="46" y="92" transform="rotate(-90 46 92)">Ön çamurluk</text></g>
+    <g class="parca" data-id="sol_on_kapi" data-ad="Sol ön kapı" role="button" tabindex="0" aria-label="Sol ön kapı: orijinal"><rect x="0" y="140" width="72" height="80"/><text x="48" y="182" transform="rotate(-90 48 182)">Ön kapı</text></g>
+    <g class="parca" data-id="sol_arka_kapi" data-ad="Sol arka kapı" role="button" tabindex="0" aria-label="Sol arka kapı: orijinal"><rect x="0" y="220" width="72" height="80"/><text x="48" y="262" transform="rotate(-90 48 262)">Arka kapı</text></g>
+    <g class="parca" data-id="sol_arka_camurluk" data-ad="Sol arka çamurluk" role="button" tabindex="0" aria-label="Sol arka çamurluk: orijinal"><rect x="0" y="300" width="66" height="94"/><text x="46" y="348" transform="rotate(-90 46 348)">Arka çamurluk</text></g>
+    <g class="parca" data-id="sag_on_camurluk" data-ad="Sağ ön çamurluk" role="button" tabindex="0" aria-label="Sağ ön çamurluk: orijinal"><rect x="154" y="44" width="66" height="96"/><text x="174" y="92" transform="rotate(-90 174 92)">Ön çamurluk</text></g>
+    <g class="parca" data-id="sag_on_kapi" data-ad="Sağ ön kapı" role="button" tabindex="0" aria-label="Sağ ön kapı: orijinal"><rect x="148" y="140" width="72" height="80"/><text x="172" y="182" transform="rotate(-90 172 182)">Ön kapı</text></g>
+    <g class="parca" data-id="sag_arka_kapi" data-ad="Sağ arka kapı" role="button" tabindex="0" aria-label="Sağ arka kapı: orijinal"><rect x="148" y="220" width="72" height="80"/><text x="172" y="262" transform="rotate(-90 172 262)">Arka kapı</text></g>
+    <g class="parca" data-id="sag_arka_camurluk" data-ad="Sağ arka çamurluk" role="button" tabindex="0" aria-label="Sağ arka çamurluk: orijinal"><rect x="154" y="300" width="66" height="94"/><text x="174" y="348" transform="rotate(-90 174 348)">Arka çamurluk</text></g>
+    </g>
+    <path d="M110 8 C150 8 172 14 178 38 C186 68 190 98 190 130 L191 300 C191 342 188 370 182 394 C175 418 148 430 110 430 C72 430 45 418 38 394 C32 370 29 342 29 300 L30 130 C30 98 34 68 42 38 C48 14 70 8 110 8 Z" fill="url(#golge)" class="notouch"/>
+    <path d="M110 8 C150 8 172 14 178 38 C186 68 190 98 190 130 L191 300 C191 342 188 370 182 394 C175 418 148 430 110 430 C72 430 45 418 38 394 C32 370 29 342 29 300 L30 130 C30 98 34 68 42 38 C48 14 70 8 110 8 Z" fill="url(#boyag)" class="notouch"/>
+    <path class="yansima" d="M84 146 L112 140 L100 172 L76 174 Z"/><path class="yansima" d="M124 140 L136 140 L120 172 L110 172 Z"/><path class="yansima" d="M88 268 L118 266 L108 296 L82 296 Z"/>
+    <path class="cam" d="M66 142 Q110 132 154 142 L148 176 Q110 169 72 176 Z"/>
+    <path class="cam" d="M72 262 Q110 269 148 262 L154 298 Q110 306 66 298 Z"/>
+    <path class="ayna" d="M31 146 L14 151 Q12 160 21 162 L32 159 Z"/>
+    <path class="ayna" d="M189 146 L206 151 Q208 160 199 162 L188 159 Z"/>
+    <path class="far" d="M45 30 Q56 21 78 21 L76 34 Q58 35 48 41 Z"/>
+    <path class="far" d="M175 30 Q164 21 142 21 L144 34 Q162 35 172 41 Z"/>
+    <path class="stop" d="M43 398 Q56 409 80 410 L78 398 Q60 396 46 386 Z"/>
+    <path class="stop" d="M177 398 Q164 409 140 410 L142 398 Q160 396 174 386 Z"/>
+    <path class="cizgi" d="M90 52 Q93 96 98 134"/>
+    <path class="cizgi" d="M130 52 Q127 96 122 134"/>
+    <path class="cizgi" d="M44 176 Q47 178 50 176"/>
+    <path class="cizgi" d="M176 176 Q173 178 170 176"/>
+    <path class="cizgi" d="M44 256 Q47 258 50 256"/>
+    <path class="cizgi" d="M176 256 Q173 258 170 256"/>
+    <path d="M110 8 C150 8 172 14 178 38 C186 68 190 98 190 130 L191 300 C191 342 188 370 182 394 C175 418 148 430 110 430 C72 430 45 418 38 394 C32 370 29 342 29 300 L30 130 C30 98 34 68 42 38 C48 14 70 8 110 8 Z" class="kontur"/>
+  </svg><span class="yon">Arka</span></div>
+      <p id="boyaOzet" class="not">Henüz parça işaretlenmedi.</p>
+    </div>
     <div class="iki">
       <div><label for="hasar">Hasar kaydı (Tramer)</label><select id="hasar" name="hasar_kaydi"><option>Yok</option><option>Var</option><option>Bilmiyorum</option></select></div>
       <div><label for="agir">Ağır hasar kaydı var mı?</label><select id="agir" name="agir_hasar"><option>Hayır</option><option>Evet</option><option>Bilmiyorum</option></select></div>
@@ -415,10 +501,48 @@
     });
   }
 
+
+  // Boya / değişen şablonu
+  const boyaSecim = document.getElementById("boya");
+  const boyaKutu = document.getElementById("boyaKutu");
+  const boyaOzet = document.getElementById("boyaOzet");
+  const parcalar = Array.from(document.querySelectorAll(".parca"));
+  const SIRA = ["", "l", "b", "d"], AD = { "": "orijinal", l: "lokal boyalı", b: "boyalı", d: "değişen" };
+
+  function boyaMetni() {
+    if (boyaSecim.value === "yok") return "Hatasız, boyasız";
+    if (boyaSecim.value === "bilmiyorum") return "Bilmiyorum";
+    const l = parcalar.filter(g => g.classList.contains("l")).map(g => g.dataset.ad);
+    const b = parcalar.filter(g => g.classList.contains("b")).map(g => g.dataset.ad);
+    const d = parcalar.filter(g => g.classList.contains("d")).map(g => g.dataset.ad);
+    return [l.length ? "Lokal boyalı: " + l.join(", ") : "", b.length ? "Boyalı: " + b.join(", ") : "", d.length ? "Değişen: " + d.join(", ") : ""].filter(Boolean).join(" | ");
+  }
+  function ozetGuncelle() {
+    const t = boyaMetni();
+    boyaOzet.textContent = t || "Henüz parça işaretlenmedi.";
+  }
+  function dokun(g) {
+    const simdi = ["l", "b", "d"].find(k => g.classList.contains(k)) || "";
+    const sonraki = SIRA[(SIRA.indexOf(simdi) + 1) % SIRA.length];
+    g.classList.remove("l", "b", "d");
+    if (sonraki) g.classList.add(sonraki);
+    g.setAttribute("aria-label", g.dataset.ad + ": " + AD[sonraki]);
+    ozetGuncelle();
+  }
+  parcalar.forEach(g => {
+    g.addEventListener("click", () => dokun(g));
+    g.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); dokun(g); } });
+  });
+  boyaSecim.addEventListener("change", () => {
+    boyaKutu.style.display = boyaSecim.value === "var" ? "block" : "none";
+    ozetGuncelle();
+  });
+
   const form = document.getElementById("form");
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     if (form.web_sitesi.value) return; // bot tuzağı
+    if (boyaSecim.value === "var" && !boyaMetni()) { alert("Lütfen boyalı veya değişen parçaları şablonda işaretleyin."); return; }
     const btn = document.getElementById("btn");
     btn.disabled = true; btn.textContent = "Gönderiliyor...";
 
@@ -442,7 +566,7 @@
       const kayit = {
         marka: markaAd, model: modelAd, yil: parseInt(v.yil), kilometre: parseInt(v.kilometre),
         yakit: v.yakit, vites: v.vites, kasa: v.kasa || null, renk: v.renk || null,
-        motor_paket: v.motor_paket || null, boya_durumu: v.boya_durumu,
+        motor_paket: v.motor_paket || null, boya_durumu: boyaMetni(),
         hasar_kaydi: v.hasar_kaydi, agir_hasar: v.agir_hasar, ek_bilgi: v.ek_bilgi || null,
         ad_soyad: v.ad_soyad, telefon: v.telefon, eposta: v.eposta || null, sehir: v.sehir || null,
         kvkk_onay: document.getElementById("kvkk").checked, fotograflar: yollar
