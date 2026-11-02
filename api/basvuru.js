@@ -33,4 +33,19 @@ export default async function handler(req, res) {
 
   const r = await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type":
+    headers: { Authorization: `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: "UC CARS <onboarding@resend.dev>",
+      to: [BILDIRIM_MAIL],
+      subject: `Yeni basvuru: ${k.marka} ${k.model || ""} - ${k.ad_soyad}`,
+      html,
+    }),
+  });
+
+  if (!r.ok) {
+    const detay = await r.text();
+    console.error("Resend hatasi", r.status, detay);
+    return res.status(502).json({ hata: "Mail gonderilemedi", detay });
+  }
+  return res.status(200).json({ tamam: true });
+}
