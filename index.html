@@ -3,109 +3,136 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aracını Bize Sat | UC CARS</title>
-<meta name="description" content="Aracının bilgilerini ve fotoğraflarını gönder, UC CARS seni arayıp teklifini iletsin.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0c0d'/%3E%3Cpath d='M9 7v10a4 4 0 0 0 8 0V7' fill='none' stroke='%23ece7df' stroke-width='2.5'/%3E%3Cpath d='M5 26h22' stroke='%23e1251b' stroke-width='2.5'/%3E%3C/svg%3E">
+<title>Aracınızı Bize Satın | UC CARS</title>
+<meta name="description" content="Aracınızın bilgilerini ve fotoğraflarını iletin, UC CARS sizi arayıp teklifini sunsun.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --kirmizi:#e1251b; --kirmizi-koyu:#b81c14;
-    --asfalt:#17181a; --antrasit:#2e3033;
-    --zemin:#eceef0; --beyaz:#fff; --cizgi:#d5d8dc; --soluk:#5d636b;
+    --kara:#f1f2f3; --panel:#ffffff; --alan:#f6f6f7;
+    --fildisi:#17181a; --soluk:#62676e; --cizgi:#dcdee1;
+    --kirmizi:#e1251b; --kirmizi-acik:#f0443a;
+    color-scheme:light;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:"Barlow",system-ui,sans-serif;font-size:17px;line-height:1.5;background:var(--zemin);color:var(--asfalt)}
-  .tabela{font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;letter-spacing:.04em;line-height:1}
-  .tabela .uc{color:#fff}.tabela .cars{color:var(--kirmizi)}
+  body{margin:0;background:var(--kara);color:var(--fildisi);font-family:"Jost",system-ui,sans-serif;font-weight:300;font-size:17px;line-height:1.6}
+  .serif{font-family:"Cormorant Garamond",Georgia,serif}
 
-  header{background:var(--asfalt);padding:14px 20px}
-  header .ic{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
-  header .tabela{font-size:2rem}
-  header span.kisa{color:#aeb3ba;font-size:.9rem}
 
-  .hero{background:var(--asfalt);color:#fff;padding:36px 20px 110px;position:relative;
-    clip-path:polygon(0 0,100% 0,100% 82%,0 100%)}
-  .hero .ic{max-width:1000px;margin:0 auto}
-  .hero h1{font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;
-    font-size:clamp(2.8rem,9vw,5.6rem);line-height:.95;margin:0 0 18px;max-width:11em;text-wrap:balance}
-  .hero p{margin:0;max-width:30em;font-size:1.1rem;color:#c9cdd2}
-  .hero ul{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px 22px;color:#fff;font-weight:500}
-  .hero li{display:flex;align-items:center;gap:8px}
-  .hero li::before{content:"";width:18px;height:4px;background:var(--kirmizi);transform:skewX(-30deg)}
+  .logo{display:flex;align-items:center;gap:16px;color:var(--fildisi)}
+  .logo .mark{width:84px;height:auto;flex:none}
+  .logo .isim{display:flex;flex-direction:column;line-height:1;border-left:1px solid #a3a7ae;padding-left:16px}
+  .logo .isim b{color:var(--kirmizi);font-family:"Cormorant Garamond",serif;font-weight:600;font-size:2.2rem;letter-spacing:.3em;margin-right:-.3em}
+  .logo .isim span{font-size:.8rem;font-weight:400;letter-spacing:.5em;color:var(--soluk);margin-top:8px}
+  .logo.kucuk{justify-content:center;margin-bottom:14px;transform:scale(.8)}
 
-  main{max-width:760px;margin:-70px auto 48px;padding:0 16px;position:relative}
-  form{background:var(--beyaz);border-radius:6px;border-top:6px solid var(--kirmizi);padding:8px 22px 26px;
-    box-shadow:0 18px 40px -18px rgba(23,24,26,.35)}
+  .ust{--fildisi:#ece7df;--soluk:#bcb7ae;--cizgi:#3c3c40;position:relative;overflow:hidden;color:var(--fildisi);
+    background:#0c0c0d}
+  .ust::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0c0c0d 0%,#0c0c0d 22%,rgba(12,12,13,0) 58%),linear-gradient(0deg,rgba(12,12,13,.35),rgba(12,12,13,0) 40%),url(hero.jpg) right bottom/auto 100% no-repeat}
+  @media(max-width:760px){.ust::before{background:linear-gradient(90deg,rgba(12,12,13,.85),rgba(12,12,13,.45)),url(hero.jpg) 20% center/cover no-repeat}}
+  .ust > *{position:relative}
+  .ust .araba{position:absolute;right:max(24px,calc(50% - 550px));bottom:60px;width:min(470px,44vw);opacity:.9;pointer-events:none}
+  @media(max-width:900px){.ust .araba{display:none}}
+  .ust .logo .isim{border-color:#4a4a4e}
+  footer{background:#0c0c0d;--fildisi:#ece7df;--soluk:#a39e95;--cizgi:#2d2d30;color:var(--soluk)}
+  footer .logo{color:var(--fildisi)}
+  header{padding:26px 28px}
+  header .ic{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+  .marka{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:1.7rem;letter-spacing:.32em;color:var(--fildisi)}
+  .marka i{font-style:normal;color:var(--kirmizi)}
+  header .kisa{color:var(--soluk);font-size:.9rem;letter-spacing:.12em}
 
-  fieldset{border:0;margin:0;padding:26px 0 8px;border-bottom:1px solid var(--cizgi)}
+  .hero{padding:60px 28px 120px}
+  .hero .ic{max-width:1100px;margin:0 auto}
+  .hero .cizgi{width:64px;height:2px;background:var(--kirmizi);margin-bottom:34px}
+  .hero h1{text-shadow:0 2px 6px rgba(0,0,0,.55),0 4px 34px rgba(0,0,0,.8);font-family:"Cormorant Garamond",serif;font-weight:500;font-size:clamp(2.9rem,8.5vw,6.4rem);line-height:1;margin:0 0 28px;max-width:11em;letter-spacing:-.01em;text-wrap:balance}
+  .hero p{margin:0;max-width:32em;font-size:1.15rem;color:var(--soluk)}
+  .hero ul{list-style:none;margin:44px 0 0;padding:26px 0 0;border-top:1px solid var(--cizgi);display:flex;flex-wrap:wrap;gap:12px 46px;color:var(--fildisi);font-weight:400;font-size:.98rem}
+
+  main{max-width:780px;margin:-30px auto 70px;padding:0 20px;position:relative}
+  form{background:var(--panel);border:1px solid var(--cizgi);padding:14px 44px 46px}
+  @media(max-width:560px){form{padding:6px 22px 34px}}
+
+  fieldset{border:0;margin:0;padding:44px 0 6px;border-bottom:1px solid var(--cizgi)}
   fieldset:last-of-type{border-bottom:0}
-  legend{padding:0;float:left;width:100%;display:flex;align-items:center;gap:12px;
-    font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;font-size:1.6rem;margin-bottom:6px}
-  legend b{display:inline-grid;place-items:center;width:34px;height:34px;background:var(--antrasit);color:#fff;font-size:1.1rem;
-    transform:skewX(-12deg)}
-  legend b i{transform:skewX(12deg);font-style:normal}
+  legend{padding:0;float:left;width:100%;margin-bottom:10px;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:2rem;line-height:1.1;display:flex;align-items:baseline;gap:16px}
+  legend b{font-weight:400;font-size:1.05rem;color:var(--kirmizi);font-family:"Jost",sans-serif}
   fieldset > *:not(legend){clear:both}
 
-  label{display:block;font-weight:600;font-size:.95rem;margin:16px 0 6px}
-  input,select,textarea{width:100%;font:inherit;padding:12px 13px;border:1.5px solid var(--cizgi);border-radius:4px;background:#fafbfb;color:var(--asfalt)}
-  input::placeholder,textarea::placeholder{color:#9aa0a8}
-  input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,.yukle:focus-within{
-    outline:3px solid var(--kirmizi);outline-offset:1px;border-color:var(--kirmizi);background:#fff}
-  select:disabled{background:#eef0f2;color:#9aa0a8}
-  .iki{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
-  @media(max-width:520px){.iki{grid-template-columns:1fr}form{padding:6px 16px 22px}}
+  label{display:block;font-weight:400;font-size:.92rem;color:var(--soluk);margin:26px 0 4px}
+  input,select,textarea{width:100%;font:inherit;font-weight:400;color:var(--fildisi);background:transparent;border:0;border-bottom:1px solid #a3a7ae;border-radius:0;padding:10px 2px;transition:border-color .2s}
+  select{appearance:none;-webkit-appearance:none;cursor:pointer;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%239b968d' stroke-width='1.5'%3E%3Cpath d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E") no-repeat right 4px center}
+  select option{background:var(--alan);color:var(--fildisi)}
+  input::placeholder,textarea::placeholder{color:#9a9ea5}
+  textarea{border:1px solid #a3a7ae;padding:12px;margin-top:6px;resize:vertical}
+  input:hover,select:hover,textarea:hover{border-color:#6b6f76}
+  input:focus-visible,select:focus-visible,textarea:focus-visible{outline:0;border-color:var(--kirmizi);box-shadow:0 1px 0 0 var(--kirmizi)}
+  textarea:focus-visible{box-shadow:0 0 0 1px var(--kirmizi)}
+  select:disabled{opacity:.4;cursor:not-allowed}
+  .iki{display:grid;grid-template-columns:1fr 1fr;gap:0 34px}
+  @media(max-width:560px){.iki{grid-template-columns:1fr}}
 
-  .yukle{display:block;border:2px dashed #aab0b7;border-radius:6px;padding:22px 16px;text-align:center;background:#fafbfb;cursor:pointer;margin:16px 0 0}
-  .yukle:hover{border-color:var(--kirmizi);background:#fff}
-  .yukle strong{display:block;font-size:1.05rem}
-  .yukle small{color:var(--soluk)}
+  .yukle{display:block;margin:28px 0 0;border:1px solid #a3a7ae;padding:34px 20px;text-align:center;cursor:pointer;color:var(--fildisi);transition:border-color .2s,background .2s}
+  .yukle:hover{border-color:var(--kirmizi);background:var(--alan)}
+  .yukle:focus-within{outline:2px solid var(--kirmizi);outline-offset:3px}
+  .yukle strong{display:block;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:1.5rem}
+  .yukle small{display:block;margin-top:6px;color:var(--soluk);font-size:.92rem}
   .yukle input{position:absolute;opacity:0;width:1px;height:1px}
-  #onizleme{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
-  #onizleme img{width:76px;height:76px;object-fit:cover;border-radius:4px;border:1px solid var(--cizgi)}
-  .not{font-size:.85rem;color:var(--soluk);margin-top:8px}
+  #onizleme{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  #onizleme img{width:84px;height:84px;object-fit:cover;border:1px solid var(--cizgi)}
 
-  .onay{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.9rem;margin-top:20px}
-  .onay input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--kirmizi)}
+  .onay{display:flex;gap:14px;align-items:flex-start;margin-top:34px;font-size:.92rem;line-height:1.5}
+  .onay input{width:20px;height:20px;flex:none;margin-top:1px;accent-color:var(--kirmizi)}
 
-  button{width:100%;margin-top:22px;background:var(--kirmizi);color:#fff;border:0;border-radius:4px;padding:16px;
-    font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;font-size:1.5rem;letter-spacing:.03em;cursor:pointer}
-  button:hover{background:var(--kirmizi-koyu)}
-  button:disabled{opacity:.65;cursor:progress}
-  .guven{text-align:center;color:var(--soluk);font-size:.85rem;margin:10px 0 0}
+  button{width:100%;margin-top:40px;background:var(--kirmizi);color:#fff;border:0;border-radius:0;padding:19px;font:inherit;font-weight:500;font-size:1.05rem;letter-spacing:.14em;cursor:pointer;transition:background .2s}
+  button:hover{background:var(--kirmizi-acik)}
+  button:focus-visible{outline:2px solid var(--fildisi);outline-offset:3px}
+  button:disabled{opacity:.6;cursor:progress}
+  .guven{text-align:center;color:var(--soluk);font-size:.88rem;margin:16px 0 0}
 
-  #sonuc{display:none;background:var(--beyaz);border-top:6px solid var(--kirmizi);border-radius:6px;padding:44px 24px;text-align:center;
-    box-shadow:0 18px 40px -18px rgba(23,24,26,.35)}
-  #sonuc h2{font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;font-size:2.6rem;margin:0 0 8px}
-  #sonuc p{margin:0 auto;max-width:28em;color:var(--soluk)}
+  #sonuc{display:none;background:var(--panel);border:1px solid var(--cizgi);padding:72px 28px;text-align:center}
+  #sonuc::before{content:"";display:block;width:64px;height:2px;background:var(--kirmizi);margin:0 auto 34px}
+  #sonuc h2{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:3.2rem;line-height:1.05;margin:0 0 14px}
+  #sonuc p{margin:0 auto;max-width:26em;color:var(--soluk);font-size:1.1rem}
 
-  footer{background:var(--asfalt);color:#aeb3ba;text-align:center;padding:26px 16px;font-size:.9rem}
-  footer .tabela{font-size:1.5rem;margin-bottom:6px}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  footer{border-top:1px solid var(--cizgi);text-align:center;padding:44px 20px 50px;color:var(--soluk);font-size:.9rem}
+  footer .marka{display:block;margin-bottom:10px;font-size:1.4rem}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
 </head>
 <body>
-<header><div class="ic"><div class="tabela"><span class="uc">UC</span> <span class="cars">CARS</span></div><span class="kisa">İstanbul</span></div></header>
+<div class="ust">
+<header><div class="ic"><div class="logo"><svg class="mark" viewBox="0 0 76 44" role="img" aria-label="UC CARS" fill="none" stroke-linecap="butt">
+<path d="M6 4v21a10 10 0 0 0 20 0V4" stroke="#ece7df" stroke-width="4"/>
+<path d="M68 12.5A13 13 0 1 0 68 31.5" stroke="#ece7df" stroke-width="4"/>
+<path d="M2 40.5h72" stroke="#e1251b" stroke-width="2.5"/>
+<path d="M31 40.5l7-9h14" stroke="#e1251b" stroke-width="0"/>
+</svg><span class="isim"><b>CARS</b><span>İstanbul</span></span></div></div></header>
 
 <section class="hero"><div class="ic">
-  <h1>Aracını sat, teklifi biz verelim.</h1>
-  <p>Aracının bilgilerini ve fotoğraflarını gönder. Seni arayıp fiyat teklifimizi iletelim.</p>
-  <ul><li>Başvuru ücretsiz</li><li>Seni biz arıyoruz</li><li>Form 3 dakikada dolar</li></ul>
+  <div class="cizgi"></div>
+  <h1>Aracınız için özel bir teklif.</h1>
+  <p>Aracınızın bilgilerini ve fotoğraflarını iletin. Sizi arayıp teklifimizi kişisel olarak sunalım.</p>
+  <ul><li>Başvuru ücretsiz</li><li>Sizi biz arıyoruz</li><li>Form üç dakikada dolar</li></ul>
 </div></section>
+</div>
 
 <main>
 <form id="form">
   <input type="text" name="web_sitesi" style="display:none" tabindex="-1" autocomplete="off">
 
   <fieldset>
-    <legend><b><i>1</i></b>Araç bilgileri</legend>
+    <legend><b>1</b>Araç bilgileri</legend>
     <div class="iki">
       <div><label for="marka">Marka *</label><select id="marka" name="marka" required></select></div>
       <div><label for="model">Model *</label><select id="model" name="model" required disabled></select></div>
     </div>
     <div id="digerKutu" style="display:none">
-      <label for="diger">Marka ve model (elle yaz) *</label><input id="diger" name="diger" placeholder="Örn: Togg T10X">
+      <label for="diger">Marka ve model (elle yazın) *</label><input id="diger" name="diger" placeholder="Örn: Togg T10X">
     </div>
     <div class="iki">
       <div><label for="yil">Yıl *</label><select id="yil" name="yil" required></select></div>
@@ -124,7 +151,7 @@
   </fieldset>
 
   <fieldset>
-    <legend><b><i>2</i></b>Araç durumu</legend>
+    <legend><b>2</b>Araç durumu</legend>
     <label for="boya">Boya / değişen durumu *</label>
     <select id="boya" name="boya_durumu" required><option value="">Seçin</option><option>Hatasız, boyasız</option><option>Boyalı parça var</option><option>Değişen parça var</option><option>Boyalı ve değişen var</option><option>Bilmiyorum</option></select>
     <div class="iki">
@@ -136,9 +163,9 @@
   </fieldset>
 
   <fieldset>
-    <legend><b><i>3</i></b>Fotoğraflar</legend>
+    <legend><b>3</b>Fotoğraflar</legend>
     <label class="yukle" for="foto">
-      <strong>Fotoğraf seç (en fazla 8)</strong>
+      <strong>Fotoğraf seçin (en fazla 8)</strong>
       <small>Ön, arka, yan, iç ve kilometre saati fotoğrafları teklifi hızlandırır.</small>
       <input id="foto" type="file" accept="image/*" multiple>
     </label>
@@ -146,25 +173,30 @@
   </fieldset>
 
   <fieldset>
-    <legend><b><i>4</i></b>İletişim bilgileri</legend>
+    <legend><b>4</b>İletişim bilgileri</legend>
     <label for="ad">Ad soyad *</label><input id="ad" name="ad_soyad" required autocomplete="name" maxlength="100">
     <div class="iki">
       <div><label for="tel">Telefon (GSM) *</label><input id="tel" name="telefon" type="tel" required autocomplete="tel" placeholder="05xx xxx xx xx" maxlength="20"></div>
       <div><label for="sehir">Şehir</label><input id="sehir" name="sehir" maxlength="60"></div>
     </div>
     <label for="eposta">E-posta</label><input id="eposta" name="eposta" type="email" autocomplete="email" maxlength="120">
-    <label class="onay" for="kvkk"><input type="checkbox" id="kvkk" required>
+    <label class="onay" for="kvkk" style="color:var(--fildisi)"><input type="checkbox" id="kvkk" required>
       <span>Kişisel verilerimin araç satın alma teklifi amacıyla işlenmesine ilişkin aydınlatma metnini okudum, onaylıyorum. *</span></label>
   </fieldset>
 
   <button id="btn" type="submit">Başvuruyu gönder</button>
-  <p class="guven">Bilgilerin yalnızca teklif vermek için kullanılır.</p>
+  <p class="guven">Bilgileriniz yalnızca teklif vermek için kullanılır.</p>
 </form>
 
-<div id="sonuc"><h2>Teşekkürler!</h2><p>Başvurun bize ulaştı. En kısa sürede seni arayıp teklifimizi ileteceğiz.</p></div>
+<div id="sonuc"><h2>Teşekkür ederiz.</h2><p>Başvurunuz bize ulaştı. En kısa sürede sizi arayıp teklifimizi ileteceğiz.</p></div>
 </main>
 
-<footer><div class="tabela"><span class="uc">UC</span> <span class="cars">CARS</span></div>İstanbul · info@uc-cars.net</footer>
+<footer><div class="logo kucuk"><svg class="mark" viewBox="0 0 76 44" role="img" aria-label="UC CARS" fill="none" stroke-linecap="butt">
+<path d="M6 4v21a10 10 0 0 0 20 0V4" stroke="#ece7df" stroke-width="4"/>
+<path d="M68 12.5A13 13 0 1 0 68 31.5" stroke="#ece7df" stroke-width="4"/>
+<path d="M2 40.5h72" stroke="#e1251b" stroke-width="2.5"/>
+<path d="M31 40.5l7-9h14" stroke="#e1251b" stroke-width="0"/>
+</svg><span class="isim"><b>CARS</b><span>İstanbul</span></span></div>İstanbul · info@uc-cars.net</footer>
 
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
