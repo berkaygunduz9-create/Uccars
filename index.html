@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230c0c0d'/%3E%3Cpath d='M9 7v10a4 4 0 0 0 8 0V7' fill='none' stroke='%23ece7df' stroke-width='2.5'/%3E%3Cpath d='M5 26h22' stroke='%23e1251b' stroke-width='2.5'/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0c0c0d">
+<meta property="og:title" content="Aracınızı Bize Satın | UC CARS">
+<meta property="og:description" content="Tüm araçlar değerinde satın alınır, hızlı fiyat verilir. Bilgilerinizi iletin, sizi arayalım.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://uccars.vercel.app/hero.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"AutoDealer","name":"UC CARS","telephone":"+905077773857","email":"info@uc-cars.net","address":{"@type":"PostalAddress","streetAddress":"Belen Sokak No:2/B","addressLocality":"Bayrampaşa","addressRegion":"İstanbul","addressCountry":"TR"}}</script>
 <title>Aracınızı Bize Satın | UC CARS</title>
 <meta name="description" content="Aracınızın bilgilerini ve fotoğraflarını iletin, UC CARS sizi arayıp teklifini sunsun.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -194,6 +200,9 @@
   .sablon .far{fill:#f6f2e2;stroke:#c9bf8f}
   .sablon .stop{fill:#e1251b;stroke:#7d1812}
   .sablon .cizgi{stroke:#b9b4a8;opacity:.35}
+  .rehber{list-style:none;display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:14px 0 0}
+  .rehber li{border:1px solid var(--cizgi);padding:5px 12px;font-size:.88rem;color:var(--soluk)}
+  .rehber li::before{content:"\2713";color:var(--kirmizi);margin-right:6px}
 </style>
 </head>
 <body>
@@ -297,6 +306,8 @@
       <div><label for="hasar">Hasar kaydı (Tramer)</label><select id="hasar" name="hasar_kaydi"><option>Yok</option><option>Var</option><option>Bilmiyorum</option></select></div>
       <div><label for="agir">Ağır hasar kaydı var mı?</label><select id="agir" name="agir_hasar"><option>Hayır</option><option>Evet</option><option>Bilmiyorum</option></select></div>
     </div>
+    <label for="kredili">Araç kredili veya rehinli mi?</label>
+    <select id="kredili" name="kredili"><option value="">Seçin</option><option>Hayır</option><option>Evet</option><option>Bilmiyorum</option></select>
     <label for="ek">Ek bilgi (bakım, ekstralar, kusurlar)</label>
     <textarea id="ek" name="ek_bilgi" rows="4" maxlength="1500"></textarea>
   </fieldset>
@@ -308,6 +319,7 @@
       <small>Ön, arka, yan, iç ve kilometre saati fotoğrafları teklifi hızlandırır.</small>
       <input id="foto" type="file" accept="image/*" multiple>
     </label>
+    <ul class="rehber"><li>Ön</li><li>Arka</li><li>Sağ yan</li><li>Sol yan</li><li>İç mekân</li><li>Kilometre saati</li><li>Motor bölmesi</li></ul>
     <div id="onizleme"></div>
   </fieldset>
 
@@ -319,15 +331,19 @@
       <div><label for="sehir">Şehir</label><input id="sehir" name="sehir" maxlength="60"></div>
     </div>
     <label for="eposta">E-posta</label><input id="eposta" name="eposta" type="email" autocomplete="email" maxlength="120">
+    <div class="iki">
+      <div><label for="zaman">Ne zaman satmak istiyorsunuz?</label><select id="zaman" name="satis_zamani"><option value="">Seçin</option><option>Hemen</option><option>Bu hafta</option><option>Bu ay</option><option>Sadece fiyat öğrenmek istiyorum</option></select></div>
+      <div><label for="aranma">Hangi saatte arayalım?</label><select id="aranma" name="arama_saati"><option>Fark etmez</option><option>Sabah</option><option>Öğleden sonra</option><option>Akşam</option></select></div>
+    </div>
     <label class="onay" for="kvkk" style="color:var(--fildisi)"><input type="checkbox" id="kvkk" required>
-      <span>Kişisel verilerimin araç satın alma teklifi amacıyla işlenmesine ilişkin aydınlatma metnini okudum, onaylıyorum. *</span></label>
+      <span>Kişisel verilerimin araç satın alma teklifi amacıyla işlenmesine ilişkin <a href="kvkk.html" target="_blank" rel="noopener" style="color:var(--kirmizi)">aydınlatma metnini</a> okudum, onaylıyorum. *</span></label>
   </fieldset>
 
   <button id="btn" type="submit">Başvuruyu gönder</button>
   <p class="guven">Bilgileriniz yalnızca teklif vermek için kullanılır.</p>
 </form>
 
-<div id="sonuc"><h2>Teşekkür ederiz.</h2><p>Başvurunuz bize ulaştı. En kısa sürede sizi arayıp teklifimizi ileteceğiz.</p></div>
+<div id="sonuc"><h2>Teşekkür ederiz.</h2><p>Başvurunuz bize ulaştı. Verdiğiniz numaradan en kısa sürede sizi arayıp teklifimizi ileteceğiz.</p><p style="margin-top:14px">Acil bir durumda <a href="tel:+905077773857" style="color:var(--kirmizi)">0507 777 38 57</a> numarasından bize ulaşabilirsiniz.</p></div>
 
 <section class="bolum">
   <h2>Neden UC CARS?</h2>
@@ -352,7 +368,9 @@
   <details><summary>Başvuru ücretli mi?</summary><p>Hayır. Başvuru için ücret ödemezsiniz.</p></details>
   <details><summary>Teklifi nasıl alacağım?</summary><p>Başvurunuzu aldıktan sonra verdiğiniz telefon numarasından sizi arayıp teklifimizi ileteceğiz.</p></details>
   <details><summary>Fotoğraf yüklemek zorunlu mu?</summary><p>Zorunlu değil. Ancak ön, arka, yan, iç ve kilometre saati fotoğrafları teklifi hızlandırır.</p></details>
-  <details><summary>Bilgilerim nasıl kullanılacak?</summary><p>Bilgileriniz yalnızca aracınız için teklif vermek amacıyla kullanılır.</p></details>
+  <details><summary>Teklif ne zaman değişebilir?</summary><p>Teklifimiz, sizin verdiğiniz bilgilere göre hazırlanır. Aracı gördüğümüzde beyan edilenden farklı bir durum çıkarsa teklif güncellenebilir. Bunun nedenini size açıkça anlatırız.</p></details>
+  <details><summary>Başvurudan sonra ne kadar sürede aranırım?</summary><p>Başvurunuzu aldıktan sonra en kısa sürede sizi arıyoruz. Formda size uygun saati seçebilirsiniz.</p></details>
+  <details><summary>Bilgilerim nasıl kullanılacak?</summary><p>Bilgileriniz yalnızca aracınız için teklif vermek amacıyla kullanılır. Ayrıntılar için <a href="kvkk.html" style="color:var(--kirmizi)">KVKK aydınlatma metnini</a> okuyabilirsiniz.</p></details>
 </section>
 
 <section class="bolum">
@@ -376,7 +394,7 @@
 <path d="M68 12.5A13 13 0 1 0 68 31.5" stroke="#ece7df" stroke-width="4"/>
 <path d="M2 40.5h72" stroke="#e1251b" stroke-width="2.5"/>
 <path d="M31 40.5l7-9h14" stroke="#e1251b" stroke-width="0"/>
-</svg><span class="isim"><b>CARS</b><span>İstanbul</span></span></div>Belen Sokak No:2/B, Bayrampaşa / İstanbul<br>0507 777 38 57 · info@uc-cars.net</footer>
+</svg><span class="isim"><b>CARS</b><span>İstanbul</span></span></div>Belen Sokak No:2/B, Bayrampaşa / İstanbul<br>0507 777 38 57 · info@uc-cars.net<br><a href="kvkk.html" style="color:inherit">KVKK aydınlatma metni</a></footer>
 
 <script type="module">
   import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
@@ -563,11 +581,18 @@
       const markaAd = v.marka === "Diger" ? (v.diger || "Belirtilmedi") : v.marka;
       const modelAd = v.marka === "Diger" ? "-" : v.model;
 
+      const notlar = [
+        v.kredili ? "Kredili/rehinli: " + v.kredili : "",
+        v.satis_zamani ? "Satış zamanı: " + v.satis_zamani : "",
+        v.arama_saati ? "Aranma saati: " + v.arama_saati : ""
+      ].filter(Boolean).join(" | ");
+      const ekMetin = [v.ek_bilgi, notlar].filter(Boolean).join("\n\n") || null;
+
       const kayit = {
         marka: markaAd, model: modelAd, yil: parseInt(v.yil), kilometre: parseInt(v.kilometre),
         yakit: v.yakit, vites: v.vites, kasa: v.kasa || null, renk: v.renk || null,
         motor_paket: v.motor_paket || null, boya_durumu: boyaMetni(),
-        hasar_kaydi: v.hasar_kaydi, agir_hasar: v.agir_hasar, ek_bilgi: v.ek_bilgi || null,
+        hasar_kaydi: v.hasar_kaydi, agir_hasar: v.agir_hasar, ek_bilgi: ekMetin,
         ad_soyad: v.ad_soyad, telefon: v.telefon, eposta: v.eposta || null, sehir: v.sehir || null,
         kvkk_onay: document.getElementById("kvkk").checked, fotograflar: yollar
       };
