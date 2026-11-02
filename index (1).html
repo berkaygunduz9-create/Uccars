@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aracını Bize Sat | UC CARS</title>
+<meta name="description" content="Aracının bilgilerini ve fotoğraflarını gönder, UC CARS seni arayıp teklifini iletsin.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --kirmizi:#e1251b; --kirmizi-koyu:#b81c14;
+    --asfalt:#17181a; --antrasit:#2e3033;
+    --zemin:#eceef0; --beyaz:#fff; --cizgi:#d5d8dc; --soluk:#5d636b;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Barlow",system-ui,sans-serif;font-size:17px;line-height:1.5;background:var(--zemin);color:var(--asfalt)}
+  .tabela{font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;letter-spacing:.04em;line-height:1}
+  .tabela .uc{color:#fff}.tabela .cars{color:var(--kirmizi)}
+
+  header{background:var(--asfalt);padding:14px 20px}
+  header .ic{max-width:1000px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+  header .tabela{font-size:2rem}
+  header span.kisa{color:#aeb3ba;font-size:.9rem}
+
+  .hero{background:var(--asfalt);color:#fff;padding:36px 20px 110px;position:relative;
+    clip-path:polygon(0 0,100% 0,100% 82%,0 100%)}
+  .hero .ic{max-width:1000px;margin:0 auto}
+  .hero h1{font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;
+    font-size:clamp(2.8rem,9vw,5.6rem);line-height:.95;margin:0 0 18px;max-width:11em;text-wrap:balance}
+  .hero p{margin:0;max-width:30em;font-size:1.1rem;color:#c9cdd2}
+  .hero ul{list-style:none;margin:26px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px 22px;color:#fff;font-weight:500}
+  .hero li{display:flex;align-items:center;gap:8px}
+  .hero li::before{content:"";width:18px;height:4px;background:var(--kirmizi);transform:skewX(-30deg)}
+
+  main{max-width:760px;margin:-70px auto 48px;padding:0 16px;position:relative}
+  form{background:var(--beyaz);border-radius:6px;border-top:6px solid var(--kirmizi);padding:8px 22px 26px;
+    box-shadow:0 18px 40px -18px rgba(23,24,26,.35)}
+
+  fieldset{border:0;margin:0;padding:26px 0 8px;border-bottom:1px solid var(--cizgi)}
+  fieldset:last-of-type{border-bottom:0}
+  legend{padding:0;float:left;width:100%;display:flex;align-items:center;gap:12px;
+    font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;font-size:1.6rem;margin-bottom:6px}
+  legend b{display:inline-grid;place-items:center;width:34px;height:34px;background:var(--antrasit);color:#fff;font-size:1.1rem;
+    transform:skewX(-12deg)}
+  legend b i{transform:skewX(12deg);font-style:normal}
+  fieldset > *:not(legend){clear:both}
+
+  label{display:block;font-weight:600;font-size:.95rem;margin:16px 0 6px}
+  input,select,textarea{width:100%;font:inherit;padding:12px 13px;border:1.5px solid var(--cizgi);border-radius:4px;background:#fafbfb;color:var(--asfalt)}
+  input::placeholder,textarea::placeholder{color:#9aa0a8}
+  input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,.yukle:focus-within{
+    outline:3px solid var(--kirmizi);outline-offset:1px;border-color:var(--kirmizi);background:#fff}
+  select:disabled{background:#eef0f2;color:#9aa0a8}
+  .iki{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+  @media(max-width:520px){.iki{grid-template-columns:1fr}form{padding:6px 16px 22px}}
+
+  .yukle{display:block;border:2px dashed #aab0b7;border-radius:6px;padding:22px 16px;text-align:center;background:#fafbfb;cursor:pointer;margin:16px 0 0}
+  .yukle:hover{border-color:var(--kirmizi);background:#fff}
+  .yukle strong{display:block;font-size:1.05rem}
+  .yukle small{color:var(--soluk)}
+  .yukle input{position:absolute;opacity:0;width:1px;height:1px}
+  #onizleme{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+  #onizleme img{width:76px;height:76px;object-fit:cover;border-radius:4px;border:1px solid var(--cizgi)}
+  .not{font-size:.85rem;color:var(--soluk);margin-top:8px}
+
+  .onay{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:.9rem;margin-top:20px}
+  .onay input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--kirmizi)}
+
+  button{width:100%;margin-top:22px;background:var(--kirmizi);color:#fff;border:0;border-radius:4px;padding:16px;
+    font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;font-size:1.5rem;letter-spacing:.03em;cursor:pointer}
+  button:hover{background:var(--kirmizi-koyu)}
+  button:disabled{opacity:.65;cursor:progress}
+  .guven{text-align:center;color:var(--soluk);font-size:.85rem;margin:10px 0 0}
+
+  #sonuc{display:none;background:var(--beyaz);border-top:6px solid var(--kirmizi);border-radius:6px;padding:44px 24px;text-align:center;
+    box-shadow:0 18px 40px -18px rgba(23,24,26,.35)}
+  #sonuc h2{font-family:"Barlow Condensed",sans-serif;font-style:italic;font-weight:800;font-size:2.6rem;margin:0 0 8px}
+  #sonuc p{margin:0 auto;max-width:28em;color:var(--soluk)}
+
+  footer{background:var(--asfalt);color:#aeb3ba;text-align:center;padding:26px 16px;font-size:.9rem}
+  footer .tabela{font-size:1.5rem;margin-bottom:6px}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header><div class="ic"><div class="tabela"><span class="uc">UC</span> <span class="cars">CARS</span></div><span class="kisa">İstanbul</span></div></header>
+
+<section class="hero"><div class="ic">
+  <h1>Aracını sat, teklifi biz verelim.</h1>
+  <p>Aracının bilgilerini ve fotoğraflarını gönder. Seni arayıp fiyat teklifimizi iletelim.</p>
+  <ul><li>Başvuru ücretsiz</li><li>Seni biz arıyoruz</li><li>Form 3 dakikada dolar</li></ul>
+</div></section>
+
+<main>
+<form id="form">
+  <input type="text" name="web_sitesi" style="display:none" tabindex="-1" autocomplete="off">
+
+  <fieldset>
+    <legend><b><i>1</i></b>Araç bilgileri</legend>
+    <div class="iki">
+      <div><label for="marka">Marka *</label><select id="marka" name="marka" required></select></div>
+      <div><label for="model">Model *</label><select id="model" name="model" required disabled></select></div>
+    </div>
+    <div id="digerKutu" style="display:none">
+      <label for="diger">Marka ve model (elle yaz) *</label><input id="diger" name="diger" placeholder="Örn: Togg T10X">
+    </div>
+    <div class="iki">
+      <div><label for="yil">Yıl *</label><select id="yil" name="yil" required></select></div>
+      <div><label for="km">Kilometre *</label><input id="km" name="kilometre" type="number" inputmode="numeric" min="0" max="999999" required></div>
+    </div>
+    <div class="iki">
+      <div><label for="yakit">Yakıt *</label><select id="yakit" name="yakit" required><option value="">Seçin</option><option>Benzin</option><option>Dizel</option><option>LPG'li</option><option>Hibrit</option><option>Elektrik</option></select></div>
+      <div><label for="vites">Vites *</label><select id="vites" name="vites" required><option value="">Seçin</option><option>Manuel</option><option>Otomatik</option><option>Yarı Otomatik</option></select></div>
+    </div>
+    <div class="iki">
+      <div><label for="kasa">Kasa tipi</label><select id="kasa" name="kasa"><option value="">Seçin</option><option>Sedan</option><option>Hatchback</option><option>SUV</option><option>Station Wagon</option><option>Coupe</option><option>Cabrio</option><option>Pick-up</option><option>Van</option></select></div>
+      <div><label for="renk">Renk</label><input id="renk" name="renk"></div>
+    </div>
+    <label for="motor">Motor / paket (varsa)</label>
+    <input id="motor" name="motor_paket" placeholder="Örn: 1.6 TDI Highline">
+  </fieldset>
+
+  <fieldset>
+    <legend><b><i>2</i></b>Araç durumu</legend>
+    <label for="boya">Boya / değişen durumu *</label>
+    <select id="boya" name="boya_durumu" required><option value="">Seçin</option><option>Hatasız, boyasız</option><option>Boyalı parça var</option><option>Değişen parça var</option><option>Boyalı ve değişen var</option><option>Bilmiyorum</option></select>
+    <div class="iki">
+      <div><label for="hasar">Hasar kaydı (Tramer)</label><select id="hasar" name="hasar_kaydi"><option>Yok</option><option>Var</option><option>Bilmiyorum</option></select></div>
+      <div><label for="agir">Ağır hasar kaydı var mı?</label><select id="agir" name="agir_hasar"><option>Hayır</option><option>Evet</option><option>Bilmiyorum</option></select></div>
+    </div>
+    <label for="ek">Ek bilgi (bakım, ekstralar, kusurlar)</label>
+    <textarea id="ek" name="ek_bilgi" rows="4" maxlength="1500"></textarea>
+  </fieldset>
+
+  <fieldset>
+    <legend><b><i>3</i></b>Fotoğraflar</legend>
+    <label class="yukle" for="foto">
+      <strong>Fotoğraf seç (en fazla 8)</strong>
+      <small>Ön, arka, yan, iç ve kilometre saati fotoğrafları teklifi hızlandırır.</small>
+      <input id="foto" type="file" accept="image/*" multiple>
+    </label>
+    <div id="onizleme"></div>
+  </fieldset>
+
+  <fieldset>
+    <legend><b><i>4</i></b>İletişim bilgileri</legend>
+    <label for="ad">Ad soyad *</label><input id="ad" name="ad_soyad" required autocomplete="name" maxlength="100">
+    <div class="iki">
+      <div><label for="tel">Telefon (GSM) *</label><input id="tel" name="telefon" type="tel" required autocomplete="tel" placeholder="05xx xxx xx xx" maxlength="20"></div>
+      <div><label for="sehir">Şehir</label><input id="sehir" name="sehir" maxlength="60"></div>
+    </div>
+    <label for="eposta">E-posta</label><input id="eposta" name="eposta" type="email" autocomplete="email" maxlength="120">
+    <label class="onay" for="kvkk"><input type="checkbox" id="kvkk" required>
+      <span>Kişisel verilerimin araç satın alma teklifi amacıyla işlenmesine ilişkin aydınlatma metnini okudum, onaylıyorum. *</span></label>
+  </fieldset>
+
+  <button id="btn" type="submit">Başvuruyu gönder</button>
+  <p class="guven">Bilgilerin yalnızca teklif vermek için kullanılır.</p>
+</form>
+
+<div id="sonuc"><h2>Teşekkürler!</h2><p>Başvurun bize ulaştı. En kısa sürede seni arayıp teklifimizi ileteceğiz.</p></div>
+</main>
+
+<footer><div class="tabela"><span class="uc">UC</span> <span class="cars">CARS</span></div>İstanbul · info@uc-cars.net</footer>
+
+<script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+  // === BURAYI KENDİ DEĞERLERİNLE DEĞİŞTİR ===
+  const SUPABASE_URL = "https://jwelqryrccnbatauljju.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_yORU1B-0gjnk79PVZLMhVA_O1xd_VBv";
+  // =============================================
+
+  const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const ARACLAR = {"Alfa Romeo":["4C","159","Giulia","Giulietta","Junior","Mito","Stelvio","Tonale"],
+  "Aston Martin":["DB9","DB11","DB12","DBS","DBX","Rapide","V8","V12","Vanquish","Vantage","Virage"],
+  "Audi":["A1","A3","A4","A5","A6","A7","A8","E-Tron","Q2","Q3","Q4","Q5","Q6","Q7","Q8","R8","RS3","RS4","RS5","RS6","RS7","S3","S4","S5","S6","S7","S8","SQ5","SQ7","SQ8","TT"],
+  "Bentley":["Bentayga","Continental","Flying Spur","Mulsanne"],
+  "BMW":["1 Serisi","1M","2 Serisi","3 Serisi","4 Serisi","5 Serisi","6 Serisi","7 Serisi","8 Serisi","Alpina","i3","i4","i5","i7","i8","iX","iX1","iX3","M2","M3","M4","M5","M6","M8","X1","X2","X3","X4","X5","X6","X7","XM","Z4"],
+  "BYD":["Atto","Destroyer","Dolphin","Han","Leopard","Seal","Song","Tang"],
+  "Cadillac":["CT6","CTS","Escalade","Lyriq","SRX","XT5"],
+  "Chery":["Alia","Chance","Kimo","Niche","Omoda","Taxim","Tiggo","Tiggo 3"],
+  "Chevrolet":["Avalanche","Aveo","Camaro","Captiva","Corvette","Cruze","Epica","Equinox","Express","Impala","Lacetti","Orlando","Silverado","Spark","Suburban","Tahoe","Trailblazer","Trax"],
+  "Chrysler":["300C","Grand Voyager","Pacifica"],
+  "Citroen":["Berlingo","C1","C3","C3 Aircross","C4","C4 Cactus","C4 Picasso","C4 SpaceTourer","C5","C5 Aircross","C8","C-Elysee","DS3","DS4","DS5","Grand C4 Picasso","Jumper","Jumpy","Nemo","SpaceTourer"],
+  "Cupra":["Ateca","Born","Formentor","Leon","Terramar"],
+  "Dacia":["Dokker","Duster","Jogger","Lodgy","Logan","Sandero","Spring","Striker"],
+  "Daihatsu":["Materia","Terios"],
+  "Dodge":["Challenger","Charger","Durango","Journey","RAM"],
+  "DS":["DS 3","DS 4","DS 7","DS 9","N°4","N°8"],
+  "Ferrari":["12Cilindri","296","458","488","599","812","849","Amalfi","California","F8","F12","FF","GTC4Lusso","Portofino","Purosangue","Roma","SF90"],
+  "Fiat":["124","500","500e","500L","500X","600","600E","Abarth","Albea","Bravo","Doblo","Ducato","Egea","Fiorino","Freemont","Fullback","Grande Punto","Linea","Palio","Panda","Pratico","Punto","Scudo","Ulysse"],
+  "Ford":["B-Max","Bronco","C-Max","Capri","E-Tourneo Custom","E-Transit","EcoSport","Edge","Escape","Expedition","Explorer","F-150","Fiesta","Flex","Focus","Fusion","Galaxy","Grand C-Max","GT","Ka","Kuga","Mondeo","Mustang","Puma","Ranger","S-Max","Tourneo Connect","Tourneo Courier","Tourneo Custom","Transit","Transit Connect","Transit Courier","Transit Custom"],
+  "GMC":["Acadia","Canyon","Hummer","Savana","Sierra","Terrain","Yukon"],
+  "Honda":["Accord","City","Civic","CR-V","CR-Z","Elysion","Honda e","HR-V","Jazz","NSX","Prelude","ZR-V"],
+  "Hyundai":["Accent","Bayon","Creta","Elantra","Equus","Genesis","Getz","Grandeur","H100","H350","H-1","i10","i20","i30","i40","Inster","Ioniq","ix20","ix35","ix55","Kona","Matrix","Santa Fe","Sonata","Staria","Tucson"],
+  "Infiniti":["EX","FX","G","GS","M","Q30","Q50","Q60","QX70","QX80"],
+  "Isuzu":["D-Max"],
+  "Jaguar":["E-Pace","F-Pace","F-Type","I-Pace","XE","XF","XJ","XK"],
+  "Jeep":["Avenger","Cherokee","Compass","Gladiator","Grand Cherokee","Renegade","Wrangler"],
+  "Kia":["Cadenza","Ceed","Cerato","EV2","EV3","EV6","EV9","Magentis","Niro","Optima","Picanto","Pro Ceed","Rio","Seltos","Sorento","Soul","Sportage","Stinger","Stonic","Venga","XCeed"],
+  "Lada":["4x4","Kalina","Priora","Vesta"],
+  "Lamborghini":["Aventador","Gallardo","Huracan","Revuelto","Temerario","Urus"],
+  "Lancia":["Delta","Thema","Voyager","Ypsilon"],
+  "Land Rover":["Defender","Discovery","Discovery Sport","Freelander","Range Rover","Range Rover Evoque","Range Rover Sport","Range Rover Velar"],
+  "Lexus":["CT","ES","GS","IS","LBX","LC","LM","LS","LX","NX","RC","RX","RZ","UX"],
+  "Maserati":["Ghibli","GranCabrio","GranTurismo","Grecale","Levante","MC20","Quattroporte"],
+  "Mazda":["BT-50","CX-3","CX-5","CX-9","CX-60","Mazda2","Mazda3","Mazda5","Mazda6","MX-5"],
+  "Mercedes-Benz":["A Serisi","B Serisi","C Serisi","Citan","CL","CLA","CLE","CLS","E Serisi","EQA","EQB","EQC","EQE","EQS","EQV","eSprinter","G Serisi","GL","GLA","GLB","GLC","GLE","GLK","GLS","GT","Maybach","ML","S Serisi","SL","SLC","SLK","SLS","Sprinter","V Serisi","Viano","Vito","X Serisi"],
+  "MG":["Cyberster","EHS","HS","Marvel","MG3","MG4","MG5","MG7","ZS"],
+  "Mini":["Cabrio","Clubman","Cooper","Countryman","Paceman"],
+  "Mitsubishi":["ASX","Attrage","Colt","Eclipse","L200","L300","Lancer","Outlander","Pajero","Spacestar"],
+  "Nissan":["400Z","Altima","Armada","GT-R","Juke","Leaf","Micra","Navara","Note","NP300","Pathfinder","Patrol","Primastar","Pulsar","Qashqai","Rogue","Sentra","Townstar","X-Trail"],
+  "Opel":["Adam","Ampera","Antara","Astra","Cascada","Combo","Corsa","Crossland","Frontera","Grandland","Insignia","Meriva","Mokka","Movano","Vivaro","Zafira"],
+  "Peugeot":["107","206","207","208","301","308","407","408","508","2008","3008","4007","5008","Bipper","Boxer","Expert","Partner","RCZ","Rifter","Traveller"],
+  "Porsche":["718","911","Boxster","Cayenne","Cayman","Macan","Panamera","Spyder","Taycan"],
+  "Proton":["Gen-2","Perdana","Saga","Savy","Waja"],
+  "Renault":["Austral","Boreal","Captur","Clio","Duster","Espace","Express","Fluence","Grand Espace","Grand Scenic","Kadjar","Kangoo","Koleos","Laguna","Latitude","Master","Megane","R5","Rafale","Scenic","Symbol","Taliant","Talisman","Trafic","Zoe"],
+  "Rolls-Royce":["Cullinan","Dawn","Ghost","Phantom","Spectre","Wraith"],
+  "Seat":["Alhambra","Altea","Arona","Ateca","Ibiza","Leon","Tarraco","Toledo"],
+  "Skoda":["Citigo","Elroq","Enyaq","Fabia","Kamiq","Karoq","Kodiaq","Octavia","Rapid","Roomster","Scala","Superb","Yeti"],
+  "Smart":["EQ","Forfour","Fortwo"],
+  "SsangYong":["Actyon","Korando","Kyron","Musso","Rexton","Rodius","Tivoli","Torres","XLV"],
+  "Subaru":["BRZ","Crosstrek","Forester","Impreza","Legacy","Levorg","Outback","Solterra","Tribeca","XV"],
+  "Suzuki":["Across","Alto","Baleno","Celerio","Grand Vitara","Ignis","Jimny","Kizashi","S-Cross","Splash","Swift","SX4","Vitara"],
+  "Tesla":["Model 3","Model S","Model X","Model Y"],
+  "Togg":["T10F","T10X"],
+  "Toyota":["4Runner","Auris","Avensis","C-HR","Camry","Corolla","Corolla Cross","Fortuner","Granvia","GT86","Harrier","Hiace","Highlander","Hilux","Land Cruiser","Prius","Proace","RAV4","Sienna","Supra","Urban Cruiser","Verso","Yaris","Yaris Cross"],
+  "Volkswagen":["Amarok","Arteon","Beetle","Caddy","California","Caravelle","CC","Crafter","e-Up!","Eos","Golf","ID.3","ID.4","ID.6","ID.7","ID. Buzz","Jetta","Multivan","Passat","Phaeton","Polo","Scirocco","Sharan","T-Cross","T-Roc","Taigo","Taos","Tayron","Teramont","Tiguan","Touareg","Touran","Transporter","Up!"],
+  "Volvo":["C30","C40","C70","EC40","ES90","EX30","EX40","S40","S60","S80","S90","V40","V50","V60","V70","V90","XC40","XC60","XC70","XC90"],
+  "Diger":[]};
+
+  const marka = document.getElementById("marka");
+  const model = document.getElementById("model");
+  const yil = document.getElementById("yil");
+  const digerKutu = document.getElementById("digerKutu");
+  const diger = document.getElementById("diger");
+
+  marka.innerHTML = '<option value="">Seçin</option>' +
+    Object.keys(ARACLAR).map(m => `<option value="${m}">${m === "Diger" ? "Diğer (listede yok)" : m}</option>`).join("");
+
+  const buYil = new Date().getFullYear();
+  yil.innerHTML = '<option value="">Seçin</option>';
+  for (let y = buYil + 1; y >= 1995; y--) yil.innerHTML += `<option>${y}</option>`;
+
+  marka.addEventListener("change", () => {
+    const secili = marka.value;
+    const elle = secili === "Diger";
+    digerKutu.style.display = elle ? "block" : "none";
+    diger.required = elle;
+    model.required = !elle;
+    model.disabled = !secili || elle;
+    model.innerHTML = '<option value="">Seçin</option>' +
+      (ARACLAR[secili] || []).map(m => `<option>${m}</option>`).join("");
+  });
+
+  // Fotoğraf önizleme + küçültme
+  const foto = document.getElementById("foto");
+  const onizleme = document.getElementById("onizleme");
+  let secilenler = [];
+
+  foto.addEventListener("change", () => {
+    secilenler = Array.from(foto.files).slice(0, 8);
+    onizleme.innerHTML = "";
+    secilenler.forEach(f => {
+      const img = document.createElement("img");
+      img.src = URL.createObjectURL(f);
+      onizleme.appendChild(img);
+    });
+  });
+
+  function kucult(dosya, maxKenar = 1600, kalite = 0.8) {
+    return new Promise((coz, red) => {
+      const img = new Image();
+      img.onload = () => {
+        const oran = Math.min(1, maxKenar / Math.max(img.width, img.height));
+        const c = document.createElement("canvas");
+        c.width = Math.round(img.width * oran);
+        c.height = Math.round(img.height * oran);
+        c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+        c.toBlob(b => b ? coz(b) : red(new Error("küçültme başarısız")), "image/jpeg", kalite);
+      };
+      img.onerror = () => red(new Error("fotoğraf açılamadı"));
+      img.src = URL.createObjectURL(dosya);
+    });
+  }
+
+  const form = document.getElementById("form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (form.web_sitesi.value) return; // bot tuzağı
+    const btn = document.getElementById("btn");
+    btn.disabled = true; btn.textContent = "Gönderiliyor...";
+
+    try {
+      const oturum = crypto.randomUUID();
+      const yollar = [];
+      for (let i = 0; i < secilenler.length; i++) {
+        btn.textContent = `Fotoğraflar yükleniyor (${i + 1}/${secilenler.length})...`;
+        const blob = await kucult(secilenler[i]);
+        const yol = `${oturum}/${i + 1}.jpg`;
+        const { error } = await sb.storage.from("fotograflar").upload(yol, blob, { contentType: "image/jpeg" });
+        if (error) throw error;
+        yollar.push(`${SUPABASE_URL}/storage/v1/object/public/fotograflar/${yol}`);
+      }
+
+      btn.textContent = "Başvuru kaydediliyor...";
+      const v = Object.fromEntries(new FormData(form));
+      const markaAd = v.marka === "Diger" ? (v.diger || "Belirtilmedi") : v.marka;
+      const modelAd = v.marka === "Diger" ? "-" : v.model;
+
+      const kayit = {
+        marka: markaAd, model: modelAd, yil: parseInt(v.yil), kilometre: parseInt(v.kilometre),
+        yakit: v.yakit, vites: v.vites, kasa: v.kasa || null, renk: v.renk || null,
+        motor_paket: v.motor_paket || null, boya_durumu: v.boya_durumu,
+        hasar_kaydi: v.hasar_kaydi, agir_hasar: v.agir_hasar, ek_bilgi: v.ek_bilgi || null,
+        ad_soyad: v.ad_soyad, telefon: v.telefon, eposta: v.eposta || null, sehir: v.sehir || null,
+        kvkk_onay: document.getElementById("kvkk").checked, fotograflar: yollar
+      };
+
+      const { error } = await sb.from("basvurular").insert(kayit);
+      if (error) throw error;
+
+      // Mail bildirimi (başarısız olsa bile başvuru kayıtlıdır)
+      fetch("/api/basvuru", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(kayit)
+      }).catch(() => {});
+
+      form.style.display = "none";
+      document.getElementById("sonuc").style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      console.error(err);
+      alert("Hata: " + (err.message || JSON.stringify(err)));
+      btn.disabled = false; btn.textContent = "Başvuruyu Gönder";
+    }
+  });
+</script>
+</body>
+</html>
